@@ -10,7 +10,6 @@ class SHAP_TS:
   # initilization of the SHAP KernelExplainer
   def __init__(self, data, model, input_size, horizon, frequency ):
     self.data = data
-    self.reference_set = self.convert_reference_set(self.data)   # this is the converted data for the reference set
 
     self.input_size = input_size
     self.horizon = horizon
@@ -18,7 +17,7 @@ class SHAP_TS:
     self.model = self.prepare_model(model)
 
     self.model.fit(self.data)
-
+    self.reference_set = self.convert_reference_set(self.data)   # this is the converted data for the reference set
     self.explainer = shap.KernelExplainer(self.predict, self.reference_set.drop(columns = 'starting_date', inplace = False))
 
 
