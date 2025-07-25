@@ -60,7 +60,7 @@ class SHAP_TS:
 
 
   def prepare_model(self, model):
-    nf = NeuralForecast(models = [model], freq = '4S')
+    nf = model
     nf.fit(self.data)
     return nf
 
